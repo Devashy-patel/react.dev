@@ -173,6 +173,18 @@ In this example, the `updateQuantity` function simulates a request to the server
 
 Update the quantity multiple times quickly. Notice that the pending "Total" state is shown while any requests are in progress, and the "Total" updates only after the final request is complete. Because the update is in an Action, the "quantity" can continue to be updated while the request is in progress.
 
+<Note>
+
+#### Why does the input update immediately?
+
+In this example, the input updates synchronously even when using `useTransition`. This is intentional.
+
+React treats user input as an urgent update to keep the interface responsive. The `useTransition` Hook is used to defer non-urgent updates, such as recalculating derived state or rendering slower UI.
+
+This means that while the input value updates immediately, any expensive updates triggered alongside it can be deferred using a transition.
+
+</Note>
+
 <Sandpack>
 
 ```json package.json hidden
